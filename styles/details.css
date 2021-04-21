@@ -1,0 +1,20 @@
+.details {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.detail--column {
+    flex-basis: 24%;
+    margin: 0 1rem;
+    padding: 1em;
+    border: 1px dotted goldenrod;
+}
+
+.assignments {
+    padding: 1rem 5rem;
+}
+
+body {
+    padding: 2em;
+}
