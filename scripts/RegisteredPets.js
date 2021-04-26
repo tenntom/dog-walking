@@ -1,5 +1,9 @@
 import { getPets, getWalkers } from "./database.js"
 
+const pets = getPets()
+const walkers = getWalkers()
+
+
 document.addEventListener(
     "click",
     (clickEvent) => {
@@ -7,24 +11,42 @@ document.addEventListener(
         if (itemClicked.id.startsWith("pet")) {
             const [, petId] = itemClicked.id.split("--")
 
-            for (const pet of pets) {
-                if (parseInt(petId) === pet.id) {
-                    for (const walker of walkers) {
-                        if (pet.walkerId === walker.id) {
-                            window.alert(`${pet.name} is being walked by ${walker.name}.`)
-                        }
+            // Done with filters
+            
+            const petIdNumber = parseInt(petId)
 
-                    }
+            const foundPet = pets.find (
+                (pet) => {
+                    return pet.id === petIdNumber
                 }
-            }
+            )
+
+            const foundWalker = walkers.find (
+                (walker) => {
+                    return walker.id === foundPet.walkerId
+                }
+            )
+
+            window.alert(`${foundPet.name} is being walked by ${foundWalker.name}.`)
+
+
+            // Done with nested loop.
+
+            // for (const pet of pets) {
+            //     if (parseInt(petId) === pet.id) {
+            //         for (const walker of walkers) {
+            //             if (pet.walkerId === walker.id) {
+            //                 window.alert(`${pet.name} is being walked by ${walker.name}.`)
+            //             }
+
+            //         }
+            //     }
+            // }
         }
     }
 )
 
-//On Monday, I should try to do this with the .find () array method to avoid the nested loop.
 
-const pets = getPets()
-const walkers = getWalkers()
 
 export const RegisteredPets = () => {
     let petHTML = "<ul>"
